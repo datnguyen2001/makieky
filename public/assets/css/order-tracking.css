@@ -1,0 +1,106 @@
+.box-tracking{
+    padding: 50px 0 70px 0;
+}
+.name-tracking{
+    color: #373E44;
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.box-tracking-order{
+    max-width: 730px;
+    margin: 0 auto;
+    padding: 40px 165px;
+    border-radius: 4px;
+    border: 1px solid #DEE3E6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.name-order-code{
+    font-size: 20px;
+    color: #373E44;
+    font-weight: 700;
+    text-align: center;
+}
+.text-input-order-tracking{
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    width: 100%;
+}
+.text-red {
+    color: #D9534F;
+}
+.input-tracking-order{
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    height: 32px;
+    line-height: 32px;
+    color: #373E44;
+    background-color: #FFFFFF;
+    background-clip: padding-box;
+    border: 1px solid #DEE3E6;
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.08);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+}
+.input-tracking-order:focus{
+    color: #373E44;
+    background-color: #FFFFFF;
+    outline: 0;
+    border-color: #24BEE2;
+    box-shadow: 0px 0px 6px 2px rgba(36, 190, 226, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 6px 2px rgba(36, 190, 226, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.text-muted {
+    color: #8E969E;
+    font-size: 12px;
+    font-weight: 400;
+    width: 100%;
+    margin-top: 4px;
+}
+.btn-search-order{
+    width: 100%;
+    background-color: #373e44;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #fff !important;
+    border-radius: 4px;
+    margin: auto;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    border:1px solid #6c757d;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    outline: 0;
+    box-shadow: none;
+    margin-top: 22px;
+    padding: 5px 12px;
+}
+@media (max-width: 768px) {
+    .name-tracking {
+        font-size: 24px;
+    }
+    .box-tracking-order{
+        width: 85%;
+        max-width: 500px;
+        padding: 20px;
+    }
+    .name-order-code{
+        font-size: 18px;
+    }
+}

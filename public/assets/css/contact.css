@@ -1,0 +1,87 @@
+.title-contact{
+    font-size: 36px;
+    color: rgba(51,51,51, 100%);
+}
+.line-contact{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+.line-contact span{
+font-size: 16px;
+    color: #333333;
+}
+.box-content-contact{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+}
+.content-right{
+    width: 50%;
+}
+
+.content-left{
+    width: 49%;
+}
+.text-input-contact{
+    font-size: 16px;
+   margin-bottom: 8px;
+    width: 100%;
+    color: rgba(51,51,51, 100%);
+}
+.text-red {
+    color: #D9534F;
+}
+.input-content{
+    font-size: 14px;
+    color: rgba(0,0,0, 100%);
+    border-radius: 4px;
+    border: 1px solid rgba(221,221,221, 100%);
+    box-shadow: none;
+    outline: none;
+    padding: 5px 12px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.btn-send-contact{
+    padding: 8px 16px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    background: #B71B6FFF;
+    border-radius: 50px;
+    border-color: #FFFFFF00;
+    margin-top: 30px;
+}
+.btn-send-contact:hover{
+    background: #FFC4E5FF;
+    border-color: #FFFFFF00;
+}
+@media (max-width: 1110px) {
+    .box-content-contact{
+        flex-wrap: wrap;
+    }
+    .content-left,.content-right{
+        width: 100%;
+    }
+    .content-right iframe{
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .title-contact {
+        font-size: 26px;
+    }
+    .btn-send-contact{
+        width: 100%;
+    }
+}

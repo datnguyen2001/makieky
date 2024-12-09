@@ -1,0 +1,17 @@
+.title-all-category{
+    width: 100%;
+    text-align: center;
+    color: rgba(51,51,51, 100%);
+    font-size: 36px;
+    padding: 15px 0;
+}
+@media (max-width: 768px) {
+    .title-all-category{
+        font-size: 29px;
+    }
+}
+@media (max-width: 600px) {
+    .title-all-category{
+        font-size: 24px;
+    }
+}
