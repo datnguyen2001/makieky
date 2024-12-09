@@ -25,7 +25,7 @@
                             <img src="{{asset($item->src)}}">
                             <p class="name-sp">{{$item->name}}</p>
                             <p class="price-sp">{{number_format($item->price)}}đ</p>
-                            <a class="btn-add-cart" data-value="{{$products->id}}" style="cursor: pointer">Thêm vào giỏ hàng</a >
+                            <a class="btn-add-cart" data-value="{{$item->id}}" style="cursor: pointer">Thêm vào giỏ hàng</a >
                             <div class="d-flex justify-content-center">
                                 <div class="rating-star-comp pointer-none d-flex align-items-center">
                                     <div class="star"><i
