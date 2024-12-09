@@ -43,7 +43,7 @@ Route::post('cart-update/{id}', [CartController::class, 'updateCart'])->name('ca
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('mua-ngay', [HomeController::class, 'buyNow'])->name('buy-now');
+    Route::post('mua-ngay', [HomeController::class, 'buyNow'])->name('buy-now');
     Route::get('thanh-toan', [HomeController::class, 'pay'])->name('pay');
     Route::post('tao-don', [HomeController::class, 'createOrderUser'])->name('create-order');
     Route::get('thanh-toan/thanh-cong',[HomeController::class,'successOrderVnPay']);
