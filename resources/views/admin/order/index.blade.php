@@ -96,7 +96,7 @@
 {{--                                                    Không có--}}
 {{--                                                @endif--}}
 {{--                                            </td>--}}
-                                            <td style="border-top: 1px solid #cccccc">
+                                            <td style="border-top: 1px solid #cccccc" class="d-flex flex-wrap gap-2">
                                                 @if($value->status == 0)
                                                     <a href="{{url('admin/order/status/'.$value->id.'/1')}}">
                                                         <button type="submit" class="btn btn-primary mb-2">Xác nhận đơn
@@ -108,7 +108,7 @@
                                                     </a>
                                                 @elseif($value->status == 1)
                                                     <a href="{{url('admin/order/status/'.$value->id.'/2')}}">
-                                                        <button type="submit" class="btn btn-primary mb-2">Giao hàng
+                                                        <button type="submit" class="btn btn-primary">Giao hàng
                                                         </button>
                                                     </a>
                                                     <a href="{{url('admin/order/status/'.$value->id.'/4')}}">
@@ -125,9 +125,9 @@
                                                         </button>
                                                     </a>
                                                 @endif
-                                                @if($value->status != 4 && $value->status != 0 && $value->status != 5 && $value->status != 3 && $value->type_payment == 2)
+                                                @if($value->status == 3)
                                                         <a href="{{url('admin/order/status/'.$value->id.'/5')}}">
-                                                            <button type="submit" class="btn btn-danger mt-2">Trả hàng hoàn tiền
+                                                            <button type="submit" class="btn btn-danger">Trả hàng hoàn tiền
                                                             </button>
                                                         </a>
                                                     @endif

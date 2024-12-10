@@ -349,8 +349,8 @@ class HomeController extends Controller
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = url('thanh-toan/thanh-cong');
-        $vnp_TmnCode = "7HKVF2P8";
-        $vnp_HashSecret = "QZHVDKNDFLLQBQIZRWSCUEBNDWEOOODQ";
+        $vnp_TmnCode = $_ENV['VNP_TMN_CODE'];
+        $vnp_HashSecret = $_ENV['VNP_HASH_SECRET'];
 
         $vnp_TxnRef = $order->order_code;
         $vnp_OrderInfo = 'Khách hàng '.$order->name.' - '.$order->phone.' đã mua hàng';
@@ -408,7 +408,7 @@ class HomeController extends Controller
     {
         session_start();
         $vnp_SecureHash = $_GET['vnp_SecureHash'];
-        $vnp_HashSecret = 'QZHVDKNDFLLQBQIZRWSCUEBNDWEOOODQ';
+        $vnp_HashSecret = $_ENV['VNP_HASH_SECRET'];
         $inputData = array();
         foreach ($_GET as $key => $value) {
             if (substr($key, 0, 4) == "vnp_") {
