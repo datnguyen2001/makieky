@@ -22,6 +22,8 @@ Route::get('dang-nhap', [LoginController::class, 'login'])->name('login');
 Route::post('login/submit', [LoginController::class, 'loginSubmit'])->name('login.submit');
 Route::get('dang-ky', [LoginController::class, 'register'])->name('register');
 Route::post('registered', [LoginController::class, 'registered'])->name('registered');
+Route::get('quen-mat-khau', [LoginController::class, 'forgotPassword'])->name('forgot.password');
+Route::post('submit-forgot-password', [LoginController::class, 'submitForgotPassword'])->name('submit.forgot.password');
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('chi-tiet/{slug}', [HomeController::class, 'detail'])->name('detail');
@@ -30,7 +32,9 @@ Route::get('thuong-hieu/{slug}', [HomeController::class, 'trademark'])->name('tr
 Route::get('chi-tiet-san-pham/{slug}', [ProductController::class, 'detailProduct'])->name('detail-product');
 Route::get('tim-kiem-san-pham', [ProductController::class, 'search'])->name('search');
 Route::get('theo-doi-don-hang', [HomeController::class, 'orderTracking'])->name('order-tracking');
+Route::post('/order/search', [HomeController::class, 'searchOrder'])->name('order.search');
 Route::get('lien-he', [HomeController::class, 'contact'])->name('contact');
+Route::post('/send-contact', [HomeController::class, 'sendEmail'])->name('send.contact');
 Route::get('bai-viet/{slug}', [HomeController::class, 'post'])->name('post');
 
 Route::get('cart-number', [CartController::class, 'cartNumber'])->name('cart-number');
@@ -39,7 +43,6 @@ Route::post('add-cart', [CartController::class, 'addCart'])->name('add-cart');
 Route::get('cart-remove/{id}', [CartController::class, 'removeItem'])->name('cart-remove');
 Route::get('cart-clear-all', [CartController::class, 'clearCart'])->name('cart-clear-all');
 Route::post('cart-update/{id}', [CartController::class, 'updateCart'])->name('cart-update');
-
 
 Route::middleware('auth')->group(function () {
 
@@ -63,6 +66,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/wards/{district_id}', [ProfileController::class, 'getWards']);
 
 
-
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });

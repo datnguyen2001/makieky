@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Đăng nhập</title>
+    <title>Quên mật khẩu</title>
     <link href="{{ asset(@$setting->logo) }}" rel="icon">
     <link href="{{ asset(@$setting->logo) }}" rel="apple-touch-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,30 +28,23 @@
 <body>
 
 <div class="box-login">
-    <a href="{{route('home')}}" class="btn-close-login">
+    <a href="{{route('login')}}" class="btn-close-login">
         <i class="fa-solid fa-xmark icon-close-login"></i>
     </a>
 
-    <form class="box-content-login" method="POST" action="{{route('login.submit')}}">
+    <form class="box-content-login" style="width: 375px;max-width: 100%" method="POST" action="{{route('submit.forgot.password')}}">
         @csrf
-        <p class="name-login">ĐĂNG NHẬP</p>
+        <p class="name-login">Quên mật khẩu</p>
         <div class="w-100">
             <input type="text" class="input-login" name="email" placeholder="Email" required>
             @error('email')
             <div class="error-message">{{ $message }}</div>
             @enderror
+            <small class="text-guide text-muted">
+                Mật khẩu mới sẽ được gửi về tài khoản mail bạn đã đăng ký.
+            </small>
         </div>
-        <div class="w-100">
-            <input type="password" placeholder="Mật khẩu" name="password" class="input-login" required>
-            @error('password')
-            <div class="error-message">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="w-100 d-flex justify-content-end">
-            <a href="{{route('forgot.password')}}" class="quen-mk">Quên mật khẩu</a>
-        </div>
-        <button type="submit" class="btn-login">Đăng nhập</button>
-        <a href="{{route('register')}}" class="no-account">Bạn chưa có tài khoản? Đăng ký</a>
+        <button type="submit" class="btn-login mt-5">Cấp lại mật khẩu</button>
     </form>
 
     </div>

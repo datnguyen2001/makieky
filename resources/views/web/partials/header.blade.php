@@ -24,11 +24,11 @@
                     <li><a class="dropdown-item" href="{{route('profile')}}">Tài khoản của tôi</a></li>
                     <li><a class="dropdown-item" href="{{route('address')}}">Địa chỉ</a></li>
                     <li><a class="dropdown-item" href="{{route('order-history')}}">Lịch sử đơn hàng</a></li>
-                    <li><a class="dropdown-item" href="#">Trích dẫn</a></li>
-                    <li><a class="dropdown-item" href="#">Danh sách mong muốn</a></li>
-                    <li><a class="dropdown-item" href="#">Phiếu giảm giá</a></li>
+{{--                    <li><a class="dropdown-item" href="#">Trích dẫn</a></li>--}}
+{{--                    <li><a class="dropdown-item" href="#">Danh sách mong muốn</a></li>--}}
+{{--                    <li><a class="dropdown-item" href="#">Phiếu giảm giá</a></li>--}}
                     <div class="line-dropdown-item"></div>
-                    <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                    <li><a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a></li>
                 </ul>
             @else
                 <a href="{{route('login')}}" class="btn-dk-dn">Đăng nhập</a>
@@ -48,7 +48,7 @@
     <div class="header-main">
         <div class="box-content-web d-flex justify-content-between align-center gap-4" style="padding:8px 0px;">
             <a href="{{route('home')}}"><img
-                    src="https://image.makewebeasy.net/makeweb/m_480x240/4mNdJ2T2B/DefaultData/Logo_website.png?v=202405291424"
+                    src="{{ asset(@$setting->logo?@$setting->logo:'https://image.makewebeasy.net/makeweb/m_480x240/4mNdJ2T2B/DefaultData/Logo_website.png?v=202405291424') }}"
                     class="img-logo"></a>
             <div class="menu-header">
                 <a href="{{route('home')}}">Trang chủ</a>
@@ -71,7 +71,7 @@
         <i class="fa-solid fa-bars"></i>
     </a>
     <a href="{{route('home')}}"><img
-            src="https://image.makewebeasy.net/makeweb/m_480x240/4mNdJ2T2B/DefaultData/Logo_website.png?v=202405291424"
+            src="{{ asset(@$setting->logo?@$setting->logo:'https://image.makewebeasy.net/makeweb/m_480x240/4mNdJ2T2B/DefaultData/Logo_website.png?v=202405291424') }}"
             class="img-logo" style="width: 100px;height: 40px;object-fit: contain"></a>
     <div class="d-flex align-items-center">
         <div class="d-flex align-items-center btn-search-header btn-search-header-mobile">

@@ -11,6 +11,7 @@ use \App\Http\Controllers\admin\TrademarkController;
 use \App\Http\Controllers\admin\ProductController;
 use \App\Http\Controllers\admin\FooterController;
 use \App\Http\Controllers\admin\OrderController;
+use \App\Http\Controllers\admin\SettingController;
 
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -88,6 +89,11 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::get('delete/{id}', [FooterController::class, 'delete']);
         Route::get('edit/{id}', [FooterController::class, 'edit']);
         Route::post('update/{id}', [FooterController::class, 'update']);
+    });
+
+    Route::prefix('setting')->name('setting.')->group(function () {
+        Route::get('', [SettingController::class, 'index'])->name('index');
+        Route::post('update', [SettingController::class, 'save'])->name('update');
     });
 
 });

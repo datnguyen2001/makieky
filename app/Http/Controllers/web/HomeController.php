@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormMail;
+use App\Mail\OrderTrackingMail;
 use App\Models\AddressModel;
 use App\Models\BannerModel;
 use App\Models\CategoryModel;
@@ -13,9 +15,12 @@ use App\Models\OrderModel;
 use App\Models\ProductModel;
 use App\Models\PromoteModel;
 use App\Models\ProvinceModel;
+use App\Models\SettingModel;
 use App\Models\TrademarkModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -159,9 +164,61 @@ class HomeController extends Controller
         return view('web.order-tracking.index');
     }
 
+    public function searchOrder(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+        ], [
+            'email.required' => 'Vui lòng nhập địa chỉ email.',
+            'email.email' => 'Email phải có định dạng hợp lệ.',
+        ]);
+
+        $order = OrderModel::with(['province', 'district', 'ward'])->where('order_code', $request->order_code)->first();
+
+        if (!$order) {
+            return back()->with('error', 'Mã đơn hàng không tồn tại!');
+        }
+        $user = User::where('email',$request->email)->first();
+
+        if (!$user){
+            return back()->with('error', 'Email không khớp với mã đơn hàng!');
+        }
+
+        if ($order->user_id != $user->id) {
+            return back()->with('error', 'Email không khớp với mã đơn hàng!');
+        }
+        $orderItems = OrderItemModel::where('order_id', $order->id)->get();
+        foreach ($orderItems as $item) {
+            $item->product = ProductModel::find($item->product_id);
+        }
+
+        Mail::to($request->email)->send(new OrderTrackingMail($order,$orderItems));
+
+        return back()->with('success', 'Thông tin đơn hàng đã được gửi vào email của bạn!');
+    }
+
     public function contact()
     {
-        return view('web.contact.index');
+        $contact = SettingModel::first();
+
+        return view('web.contact.index',compact('contact'));
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+            'phone' => ['required', 'regex:/^(0|\+84)[0-9]{9}$/'],
+        ], [
+            'email.required' => 'Vui lòng nhập địa chỉ email.',
+            'email.email' => 'Email phải có định dạng hợp lệ.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.regex' => 'Số điện thoại không hợp lệ. Đảm bảo số điện thoại bắt đầu với 0 và có 10 chữ số.',
+        ]);
+
+        Mail::to($request->email)->send(new ContactFormMail($request));
+
+        return back()->with('success', 'Tin nhắn của bạn đã được gửi đi!');
     }
 
     public function buyNow(Request $request)
@@ -340,7 +397,7 @@ class HomeController extends Controller
 
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         header('Location: ' . $vnp_Url);

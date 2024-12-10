@@ -20,24 +20,24 @@
         </div>
         <hr>
         <div class="list-member-menu">
-            <div class="my-gd-1 cursor-pointer selected-menu">
+            <a href="{{route('profile')}}" class="my-gd-1 cursor-pointer link-menu-profile @if($active_menu == 1) selected-menu @endif">
                 Tài khoản của tôi
-            </div>
-            <a href="{{route('address')}}" class="my-gd-1 cursor-pointer link-menu-profile">
+            </a>
+            <a href="{{route('address')}}" class="my-gd-1 cursor-pointer link-menu-profile @if($active_menu == 2) selected-menu @endif">
                 Địa chỉ
             </a>
-            <a href="{{route('order-history')}}" class="my-gd-1 cursor-pointer link-menu-profile">
+            <a href="{{route('order-history')}}" class="my-gd-1 cursor-pointer link-menu-profile @if($active_menu == 3) selected-menu @endif">
                 Lịch sử đơn hàng
             </a>
-            <div class="my-gd-1 cursor-pointer">
-                Danh sách báo giá
-            </div>
-            <div class="my-gd-1 cursor-pointer">
-                Danh sách mong muốn
-            </div>
-            <div class="my-gd-1 cursor-pointer">
-                Phiếu giảm giá
-            </div>
+{{--            <div class="my-gd-1 cursor-pointer">--}}
+{{--                Danh sách báo giá--}}
+{{--            </div>--}}
+{{--            <div class="my-gd-1 cursor-pointer">--}}
+{{--                Danh sách mong muốn--}}
+{{--            </div>--}}
+{{--            <div class="my-gd-1 cursor-pointer">--}}
+{{--                Phiếu giảm giá--}}
+{{--            </div>--}}
             <a href="{{route('logout')}}" class="py-gd-2 mt-gd-2 border-top w-100 d-inline-block link-menu-profile" style="cursor: pointer;">
                 Đăng xuất
             </a>

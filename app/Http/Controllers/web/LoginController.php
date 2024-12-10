@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPasswordMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -77,4 +80,35 @@ class LoginController extends Controller
         Auth::guard('web')->logout();
         return redirect()->route('login');
     }
+
+    public function forgotPassword()
+    {
+        return view('web.forgot_password');
+    }
+
+    public function submitForgotPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+        ], [
+            'email.required' => 'Email là bắt buộc.',
+            'email.email' => 'Vui lòng nhập một địa chỉ email hợp lệ.',
+            'email.exists' => 'Email không tồn tại trong hệ thống.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $newPassword = Str::random(8);
+
+        $user = User::where('email', $request->email)->first();
+        $user->password = Hash::make($newPassword);
+        $user->save();
+
+        Mail::to($request->email)->send(new ResetPasswordMail($newPassword));
+
+        return redirect()->route('login')->with('success', 'Mật khẩu mới đã được gửi về email của bạn!');
+    }
+
 }

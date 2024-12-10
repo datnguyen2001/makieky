@@ -19,8 +19,9 @@ class ProfileController extends Controller
     public function profile()
     {
         $data = Auth::guard('web')->user();
+        $active_menu = 1;
 
-        return view('web.account.index',compact('data'));
+        return view('web.account.index',compact('data','active_menu'));
     }
 
     public function updateProfile(Request $request)
@@ -97,8 +98,9 @@ class ProfileController extends Controller
             ->where('user_id', Auth::id())->get();
 
         $province = ProvinceModel::all();
+        $active_menu = 2;
 
-        return view('web.account.address',compact('data','province'));
+        return view('web.account.address',compact('data','province','active_menu'));
     }
 
     public function addAddress(Request $request)
@@ -209,8 +211,9 @@ class ProfileController extends Controller
         } else {
             $listData = OrderModel::where('user_id', $user->id)->where('is_select',1)->get();
         }
+        $active_menu = 3;
 
-        return view('web.account.order',compact('listData'));
+        return view('web.account.order',compact('listData','active_menu'));
     }
 
     public function getOrderDetails($orderId)
