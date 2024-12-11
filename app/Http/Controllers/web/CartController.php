@@ -12,6 +12,7 @@ class CartController extends Controller
     public function cartNumber()
     {
         $cart = Session::get('cart', []);
+        $number = 0;
         if (!empty($cart)) {
             $productIds = array_column($cart, 'product_id');
             $products = ProductModel::whereIn('id', $productIds)->get()->keyBy('id');
@@ -20,12 +21,13 @@ class CartController extends Controller
                 if (!$product || $item['quantity'] > $product->quantity) {
                     unset($cart[$key]);
                 }
+                $number += $item['quantity'];
             }
 
             Session::put('cart', $cart);
         }
 
-        return response()->json(['number' => count($cart)]);
+        return response()->json(['number' => $number]);
     }
 
     public function getCart()

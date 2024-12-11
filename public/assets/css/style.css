@@ -591,6 +591,38 @@ a {
     color: red;
 }
 
+#toTop {
+    background: transparent;
+    position: fixed;
+    bottom: 23px;
+    right: 30px;
+    z-index: 1042;
+    width: 45px;
+    height: 45px;
+}
+
+.fa-stack {
+    display: inline-block;
+    height: 2em;
+    line-height: 2em;
+    position: relative;
+    vertical-align: middle;
+    width: 2em;
+}
+.fa-stack-1x, .fa-stack-2x {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.fa-inverse {
+    color: #fff;
+}
+
+.fa-stack-2x {
+    font-size: 2em;
+}
+
 @media (max-width: 767px) {
     .btn-close-login {
         right: 30px;
